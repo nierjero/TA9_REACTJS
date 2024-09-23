@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const [contador, setContador] = useState(0);
+
+  useEffect(() => {
+    document.title = `Contador: ${contador}`;
+  }, [contador]); 
 
   const aumentar = () => {
     setContador(contador + 1);
@@ -25,14 +29,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '50px'
+    marginTop: '50px',
   },
   button: {
     margin: '10px',
     padding: '10px 20px',
-    fontSize: '16px'
-  }
+    fontSize: '16px',
+  },
 };
 
 export default App;
+
 
