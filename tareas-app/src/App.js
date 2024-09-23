@@ -7,8 +7,13 @@ function App() {
   const agregarTarea = () => {
     if (tarea.trim()) {
       setListaTareas([...listaTareas, tarea]);
-      setTarea(''); 
+      setTarea(''); // Limpiar el input después de agregar la tarea
     }
+  };
+
+  const borrarTarea = (index) => {
+    const nuevasTareas = listaTareas.filter((_, i) => i !== index);
+    setListaTareas(nuevasTareas);
   };
 
   return (
@@ -24,13 +29,17 @@ function App() {
       <button onClick={agregarTarea} style={styles.button}>Agregar Tarea</button>
       <ul style={styles.lista}>
         {listaTareas.map((tarea, index) => (
-          <li key={index} style={styles.item}>{tarea}</li>
+          <li key={index} style={styles.item}>
+            {tarea}
+            <button onClick={() => borrarTarea(index)} style={styles.botonBorrar}>Borrar</button>
+          </li>
         ))}
       </ul>
     </div>
   );
 }
 
+// Estilos para la interfaz
 const styles = {
   container: {
     display: 'flex',
@@ -56,12 +65,23 @@ const styles = {
     width: '100%',
   },
   item: {
+    display: 'flex',
+    justifyContent: 'space-between',
     padding: '10px',
     border: '1px solid #ccc',
     marginBottom: '5px',
     borderRadius: '5px',
   },
+  botonBorrar: {
+    marginLeft: '10px',
+    color: 'red',
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
+    fontWeight: 'bold',
+  },
 };
 
 export default App;
+
 
